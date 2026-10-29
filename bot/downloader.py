@@ -1,9 +1,11 @@
 import asyncio
 import logging
 import re
+import shutil
 from dataclasses import dataclass
 from pathlib import Path
 
+import imageio_ffmpeg
 import yt_dlp
 
 from .config import Config
@@ -56,6 +58,9 @@ def _ydl_options(config: Config, workdir: Path) -> dict:
         "noprogress": True,
         "socket_timeout": 30,
         "retries": 3,
+        # Use the system ffmpeg if installed, otherwise the bundled binary,
+        # so the bot works on Windows without installing ffmpeg by hand.
+        "ffmpeg_location": shutil.which("ffmpeg") or imageio_ffmpeg.get_ffmpeg_exe(),
     }
     if config.cookies_file:
         opts["cookiefile"] = str(config.cookies_file)

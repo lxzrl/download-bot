@@ -5,7 +5,17 @@ Telegram-бот для скачивания видео по ссылке: YouTub
 
 Пользователь присылает ссылку, бот скачивает видео (до 720p, mp4) и отправляет его в чат.
 
-## Запуск
+## Быстрый запуск
+
+- **Windows:** дважды кликни `start.bat`.
+- **Linux / macOS:** выполни `./start.sh`.
+
+При первом запуске скрипт спросит токен бота от [@BotFather](https://t.me/BotFather),
+сохранит его в `.env`, установит зависимости и запустит бота. Нужен только
+[Python 3.11+](https://www.python.org/downloads/) (на Windows при установке отметь
+«Add python.exe to PATH»). ffmpeg ставить не обязательно, он подтягивается автоматически.
+
+## Запуск вручную
 
 1. Создай бота у [@BotFather](https://t.me/BotFather) и получи токен.
 2. Скопируй настройки и впиши токен:
@@ -19,7 +29,7 @@ Telegram-бот для скачивания видео по ссылке: YouTub
 docker compose up -d --build
 ```
 
-**Локально** (нужны Python 3.11+ и `ffmpeg`):
+**Локально** (нужен Python 3.11+):
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
@@ -55,4 +65,6 @@ bot/
   config.py     чтение настроек из .env
   downloader.py скачивание через yt-dlp
   handlers.py   обработка сообщений
+start.bat       быстрый запуск на Windows
+start.sh        быстрый запуск на Linux/macOS
 ```
