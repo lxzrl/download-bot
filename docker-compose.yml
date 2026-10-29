@@ -3,3 +3,20 @@ services:
     build: .
     env_file: .env
     restart: unless-stopped
+
+  # Local Bot API server lifts the upload limit from 50 MB to 2 GB.
+  # Start with: docker compose --profile big-files up -d --build
+  # and set TELEGRAM_API_URL=http://telegram-bot-api:8081, MAX_FILE_MB=2000 in .env.
+  telegram-bot-api:
+    image: aiogram/telegram-bot-api:latest
+    profiles: [big-files]
+    environment:
+      TELEGRAM_API_ID: ${TELEGRAM_API_ID}
+      TELEGRAM_API_HASH: ${TELEGRAM_API_HASH}
+      TELEGRAM_LOCAL: "1"
+    volumes:
+      - telegram-bot-api-data:/var/lib/telegram-bot-api
+    restart: unless-stopped
+
+volumes:
+  telegram-bot-api-data:

@@ -33,7 +33,7 @@ def load_config() -> Config:
         bot_token=token,
         max_file_mb=int(os.getenv("MAX_FILE_MB", "50")),
         telegram_api_url=os.getenv("TELEGRAM_API_URL", "").strip() or None,
-        max_height=int(os.getenv("MAX_HEIGHT", "720")),
+        max_height=int(os.getenv("MAX_HEIGHT", "1080")),
         max_concurrent_downloads=int(os.getenv("MAX_CONCURRENT_DOWNLOADS", "3")),
         cookies_file=Path(cookies) if cookies else None,
         proxy=os.getenv("YTDLP_PROXY", "").strip() or None,
