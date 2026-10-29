@@ -11,8 +11,9 @@ if [ ! -f .env ]; then
 fi
 
 [ -x .venv/bin/python ] || python3 -m venv .venv
-.venv/bin/python -m pip install -q --upgrade pip
-.venv/bin/python -m pip install -q -r requirements.txt
+echo "Installing dependencies, this can take a few minutes on first run..."
+.venv/bin/python -m pip install -q --disable-pip-version-check --upgrade pip
+.venv/bin/python -m pip install -r requirements.txt
 
 echo "Bot is running. Press Ctrl+C to stop."
 exec .venv/bin/python -m bot

@@ -26,9 +26,9 @@ if not exist .venv\Scripts\python.exe (
     echo Creating virtual environment...
     python -m venv .venv
 )
-echo Installing dependencies...
-.venv\Scripts\python -m pip install -q --upgrade pip
-.venv\Scripts\python -m pip install -q -r requirements.txt
+echo Installing dependencies, this can take a few minutes on first run...
+.venv\Scripts\python -m pip install -q --disable-pip-version-check --upgrade pip
+.venv\Scripts\python -m pip install -r requirements.txt
 if errorlevel 1 (
     echo Failed to install dependencies.
     pause
